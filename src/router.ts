@@ -145,7 +145,7 @@ export abstract class Router {
     return {
       methodName,
       args,
-      value
+      value,
     }
   }
 }

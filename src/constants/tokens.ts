@@ -18,6 +18,13 @@ export const USDC: TokenMap = {
   [ChainId.ARBITRUM]: new Token(ChainId.ARBITRUM, USDC_ADDRESS[ChainId.ARBITRUM], 6, 'USDC', 'USD Coin'),
   [ChainId.MOONRIVER]: new Token(ChainId.MOONRIVER, USDC_ADDRESS[ChainId.MOONRIVER], 6, 'USDC', 'USD Coin'),
   [ChainId.FUSE]: new Token(ChainId.FUSE, USDC_ADDRESS[ChainId.FUSE], 6, 'USDC', 'USD Coin'),
+  [ChainId.AURORA_TESTNET]: new Token(
+    ChainId.AURORA_TESTNET,
+    USDC_ADDRESS[ChainId.AURORA_TESTNET],
+    6,
+    'USDC',
+    'USD Coin'
+  ),
 }
 
 export const USD: TokenMap = {
@@ -47,6 +54,13 @@ export const WETH9: TokenMap = {
   [ChainId.HARMONY]: new Token(ChainId.HARMONY, WETH9_ADDRESS[ChainId.HARMONY], 18, 'WETH', 'Wrapped Ether'),
   [ChainId.XDAI]: new Token(ChainId.XDAI, WETH9_ADDRESS[ChainId.XDAI], 18, 'WETH', 'Wrapped Ether'),
   [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, WETH9_ADDRESS[ChainId.AVALANCHE], 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.AURORA_TESTNET]: new Token(
+    ChainId.AURORA_TESTNET,
+    WETH9_ADDRESS[ChainId.AURORA_TESTNET],
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 }
 
 export const WNATIVE: TokenMap = {
@@ -132,4 +146,11 @@ export const WNATIVE: TokenMap = {
   ),
   [ChainId.FUSE]: new Token(ChainId.FUSE, WNATIVE_ADDRESS[ChainId.FUSE], 18, 'WFUSE', 'Wrapped Fuse'),
   [ChainId.TELOS]: new Token(ChainId.TELOS, WNATIVE_ADDRESS[ChainId.TELOS], 18, 'WTLOS', 'Wrapped Telos'),
+  [ChainId.AURORA_TESTNET]: new Token(
+    ChainId.AURORA_TESTNET,
+    WNATIVE_ADDRESS[ChainId.AURORA_TESTNET],
+    18,
+    'AURORA',
+    'Aurora'
+  ),
 }

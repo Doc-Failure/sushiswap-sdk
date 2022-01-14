@@ -39,7 +39,7 @@ export const getSignature = (message: Message, chainId: ChainId, privateKey: str
   let domain: Domain = {
     name: name,
     chainId: chainId,
-    verifyingContract: STOP_LIMIT_ORDER_ADDRESS[chainId]
+    verifyingContract: STOP_LIMIT_ORDER_ADDRESS[chainId],
   }
   return sign({ types, primaryType: 'LimitOrder', domain, message }, privateKey)
 }
@@ -48,7 +48,7 @@ export const getTypedData = (message: Message, chainId: ChainId) => {
   let domain: Domain = {
     name: name,
     chainId: chainId,
-    verifyingContract: STOP_LIMIT_ORDER_ADDRESS[chainId]
+    verifyingContract: STOP_LIMIT_ORDER_ADDRESS[chainId],
   }
   return { types, primaryType: 'LimitOrder', domain, message }
 }
@@ -57,13 +57,13 @@ export const getTypedDataBento = (message: BentoApprovalMessage, chainId: ChainI
   let domain: Domain = {
     name: 'BentoBox V1',
     chainId: chainId,
-    verifyingContract: BENTOBOX_ADDRESS[chainId]
+    verifyingContract: BENTOBOX_ADDRESS[chainId],
   }
   return {
     types: bentoTypes,
     primaryType: 'SetMasterContractApproval',
     domain,
-    message
+    message,
   }
 }
 
@@ -105,14 +105,14 @@ export const getSignatureBento = async (bentoApproval: BentoApprovalMessage, cha
   let domain: Domain = {
     name: 'BentoBox V1',
     chainId: chainId,
-    verifyingContract: BENTOBOX_ADDRESS[chainId]
+    verifyingContract: BENTOBOX_ADDRESS[chainId],
   }
   return sign(
     {
       types: bentoTypes,
       primaryType: 'SetMasterContractApproval',
       domain,
-      message: bentoApproval
+      message: bentoApproval,
     },
     privateKey
   )

@@ -8,14 +8,14 @@ import invariant from 'tiny-invariant'
 const ADDRESSES = [
   '0x0000000000000000000000000000000000000001',
   '0x0000000000000000000000000000000000000002',
-  '0x0000000000000000000000000000000000000003'
+  '0x0000000000000000000000000000000000000003',
 ]
 const CHAIN_ID = 3
 const WETH9 = _WETH9[3]
 const DECIMAL_PERMUTATIONS: [number, number, number][] = [
   [0, 0, 0],
   [0, 9, 18],
-  [18, 18, 18]
+  [18, 18, 18],
 ]
 
 function decimalize(amount: number, decimals: number): JSBI {
@@ -23,7 +23,7 @@ function decimalize(amount: number, decimals: number): JSBI {
 }
 
 describe('entities', () => {
-  DECIMAL_PERMUTATIONS.forEach(decimals => {
+  DECIMAL_PERMUTATIONS.forEach((decimals) => {
     describe(`decimals permutation: ${decimals}`, () => {
       let tokens: Token[]
       beforeAll(() => {
@@ -44,7 +44,7 @@ describe('entities', () => {
           new Pair(
             CurrencyAmount.fromRawAmount(tokens[2], decimalize(1, tokens[2].decimals)),
             CurrencyAmount.fromRawAmount(WETH9, decimalize(1234, WETH9.decimals))
-          )
+          ),
         ]
       })
 
@@ -83,7 +83,7 @@ describe('entities', () => {
               new Pair(
                 CurrencyAmount.fromRawAmount(tokens[1], decimalize(5, tokens[1].decimals)),
                 CurrencyAmount.fromRawAmount(WETH9, decimalize(10, WETH9.decimals))
-              )
+              ),
             ],
             tokens[1],
             WETH9
@@ -134,7 +134,7 @@ describe('entities', () => {
                       tokens[1].decimals === 9 ? JSBI.BigInt('30090280812437312') : JSBI.BigInt('30090270812437322')
                     )
                   )
-                )
+                ),
               ],
               tokens[1],
               WETH9

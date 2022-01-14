@@ -22,7 +22,7 @@ export class ConstantProductPool {
       tokenA,
       tokenB,
       fee,
-      twap
+      twap,
     })
   }
 
@@ -151,7 +151,7 @@ export class ConstantProductPool {
     )
     return [
       inputAmount,
-      new ConstantProductPool(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.fee, this.twap)
+      new ConstantProductPool(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.fee, this.twap),
     ]
   }
 

@@ -199,7 +199,7 @@ export class Graph {
     this.vertices = []
     this.edges = []
     this.tokens = new Map()
-    pools.forEach(p => {
+    pools.forEach((p) => {
       const v0 = this.getOrCreateVertice(p.token0)
       const v1 = this.getOrCreateVertice(p.token1)
       const edge = new Edge(p, v0, v1)
@@ -326,8 +326,8 @@ export class Graph {
     const finish = this.tokens.get(to)
     if (!start || !finish) return
 
-    this.edges.forEach(e => (e.bestEdgeIncome = 0))
-    this.vertices.forEach(v => {
+    this.edges.forEach((e) => (e.bestEdgeIncome = 0))
+    this.vertices.forEach((v) => {
       v.bestIncome = 0
       v.gasSpent = 0
       v.bestTotal = 0
@@ -365,12 +365,12 @@ export class Graph {
           path: bestPath,
           output: finish.bestIncome,
           gasSpent: finish.gasSpent,
-          totalOutput: finish.bestTotal
+          totalOutput: finish.bestTotal,
         }
       }
       nextVertList.splice(closestPosition, 1)
 
-      closestVert.edges.forEach(e => {
+      closestVert.edges.forEach((e) => {
         const v2 = closestVert === e.vert0 ? e.vert1 : e.vert0
         if (processedVert.has(v2)) return
         let newIncome, gas
@@ -405,7 +405,7 @@ export class Graph {
 
   addPath(from: Vertice | undefined, to: Vertice | undefined, path: Edge[]) {
     let _from = from
-    path.forEach(e => {
+    path.forEach((e) => {
       if (_from) {
         e.applySwap(_from)
         _from = _from.getNeibour(e)
@@ -415,10 +415,10 @@ export class Graph {
     })
 
     ASSERT(() => {
-      const res = this.vertices.every(v => {
+      const res = this.vertices.every((v) => {
         let total = 0
         let totalModule = 0
-        v.edges.forEach(e => {
+        v.edges.forEach((e) => {
           if (e.vert0 === v) {
             if (e.direction) {
               total -= e.amountInPrevious
@@ -448,12 +448,12 @@ export class Graph {
     let routeValues = []
     if (Array.isArray(mode)) {
       const sum = mode.reduce((a, b) => a + b, 0)
-      routeValues = mode.map(e => e / sum)
+      routeValues = mode.map((e) => e / sum)
     } else {
       for (let i = 0; i < mode; ++i) routeValues.push(1 / mode)
     }
 
-    this.edges.forEach(e => {
+    this.edges.forEach((e) => {
       e.amountInPrevious = 0
       e.amountOutPrevious = 0
       e.direction = true
@@ -482,7 +482,7 @@ export class Graph {
         amountOut: 0,
         legs: [],
         gasSpent: 0,
-        totalAmountOut: 0
+        totalAmountOut: 0,
       }
     let status
     if (step < routeValues.length) status = RouteStatus.Partial
@@ -503,7 +503,7 @@ export class Graph {
       amountOut: output,
       legs,
       gasSpent,
-      totalAmountOut: output - gasSpent * toVert.gasPrice
+      totalAmountOut: output - gasSpent * toVert.gasPrice,
     }
   }
 
@@ -511,8 +511,8 @@ export class Graph {
     const [nodes, topologyWasChanged] = this.cleanTopology(from, to)
     const legs: RouteLeg[] = []
     let gasSpent = 0
-    nodes.forEach(n => {
-      const outEdges = this.getOutputEdges(n).map(e => {
+    nodes.forEach((n) => {
+      const outEdges = this.getOutputEdges(n).map((e) => {
         const from = this.edgeFrom(e)
         return from ? [e, from[0], from[1]] : [e]
       })
@@ -528,7 +528,7 @@ export class Graph {
           address: (e[0] as Edge).pool.address,
           token: n.token,
           swapPortion: quantity,
-          absolutePortion: p / total
+          absolutePortion: p / total,
         })
         gasSpent += (e[0] as Edge).pool.swapGasCost
         outAmount -= p
@@ -544,7 +544,7 @@ export class Graph {
   }
 
   getOutputEdges(v: Vertice): Edge[] {
-    return v.edges.filter(e => {
+    return v.edges.filter((e) => {
       if (!e.canBeUsed) return false
       if (e.amountInPrevious === 0) return false
       if (e.direction !== (e.vert0 === v)) return false
@@ -553,7 +553,7 @@ export class Graph {
   }
 
   getInputEdges(v: Vertice): Edge[] {
-    return v.edges.filter(e => {
+    return v.edges.filter((e) => {
       if (!e.canBeUsed) return false
       if (e.amountInPrevious === 0) return false
       if (e.direction === (e.vert0 === v)) return false
@@ -564,10 +564,10 @@ export class Graph {
   calcLegsAmountOut(legs: RouteLeg[], amountIn: number, to: RToken) {
     const amounts = new Map<RToken, number>()
     amounts.set(legs[0].token, amountIn)
-    legs.forEach(l => {
+    legs.forEach((l) => {
       const vert = this.tokens.get(l.token)
       console.assert(vert !== undefined, 'Internal Error 570')
-      const edge = (vert as Vertice).edges.find(e => e.pool.address === l.address)
+      const edge = (vert as Vertice).edges.find((e) => e.pool.address === l.address)
       console.assert(edge !== undefined, 'Internel Error 569')
       const pool = (edge as Edge).pool
       const direction = vert === (edge as Edge).vert0
@@ -608,8 +608,8 @@ export class Graph {
   }
 
   removeDeadEnds(verts: Vertice[]) {
-    verts.forEach(v => {
-      this.getInputEdges(v).forEach(e => {
+    verts.forEach((v) => {
+      this.getInputEdges(v).forEach((e) => {
         e.canBeUsed = false
       })
     })
@@ -621,7 +621,7 @@ export class Graph {
     verts.forEach((v1, i) => {
       const v2 = i === 0 ? verts[verts.length - 1] : verts[i - 1]
       let out = 0
-      this.getOutputEdges(v1).forEach(e => {
+      this.getOutputEdges(v1).forEach((e) => {
         if (v1.getNeibour(e) !== v2) return
         out += e.direction ? e.amountOutPrevious : e.amountInPrevious
       })
@@ -632,7 +632,7 @@ export class Graph {
       }
     })
     // @ts-ignore
-    this.getOutputEdges(minVert).forEach(e => {
+    this.getOutputEdges(minVert).forEach((e) => {
       if (minVert.getNeibour(e) !== minVertNext) return
       e.canBeUsed = false
     })

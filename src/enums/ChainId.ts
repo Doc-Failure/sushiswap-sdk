@@ -28,4 +28,5 @@ export enum ChainId {
   MOONRIVER = 1285,
   FUSE = 122,
   TELOS = 40,
+  AURORA_TESTNET = 1313161555,
 }
