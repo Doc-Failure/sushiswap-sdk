@@ -6,7 +6,7 @@ import {
   RWeightedPool,
   RConcentratedLiquidityPool,
   CL_MIN_TICK,
-  CL_MAX_TICK
+  CL_MAX_TICK,
 } from '../types/MultiRouterTypes'
 
 const A_PRECISION = 100
@@ -31,29 +31,15 @@ export function HybridComputeLiquidity(pool: RHybridPool): BigNumber {
 
   let D = s
   for (let i = 0; i < 256; i++) {
-    const dP = D.mul(D)
-      .div(r0)
-      .mul(D)
-      .div(r1)
-      .div(4)
+    const dP = D.mul(D).div(r0).mul(D).div(r1).div(4)
     prevD = D
     D = nA
       .mul(s)
       .div(A_PRECISION)
       .add(dP.mul(2))
       .mul(D)
-      .div(
-        nA
-          .div(A_PRECISION)
-          .sub(1)
-          .mul(D)
-          .add(dP.mul(3))
-      )
-    if (
-      D.sub(prevD)
-        .abs()
-        .lte(1)
-    ) {
+      .div(nA.div(A_PRECISION).sub(1).mul(D).add(dP.mul(3)))
+    if (D.sub(prevD).abs().lte(1)) {
       break
     }
   }
@@ -70,30 +56,15 @@ export function HybridgetY(pool: RHybridPool, x: BigNumber): BigNumber {
     .div(x.mul(2))
     .mul(D)
     .div((nA * 2) / A_PRECISION)
-  let b = D.mul(A_PRECISION)
-    .div(nA)
-    .add(x)
+  let b = D.mul(A_PRECISION).div(nA).add(x)
 
   let yPrev
   let y = D
   for (let i = 0; i < 256; i++) {
     yPrev = y
 
-    y = y
-      .mul(y)
-      .add(c)
-      .div(
-        y
-          .mul(2)
-          .add(b)
-          .sub(D)
-      )
-    if (
-      y
-        .sub(yPrev)
-        .abs()
-        .lte(1)
-    ) {
+    y = y.mul(y).add(c).div(y.mul(2).add(b).sub(D))
+    if (y.sub(yPrev).abs().lte(1)) {
       break
     }
   }

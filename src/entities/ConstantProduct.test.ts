@@ -53,7 +53,7 @@ describe('computePoolAddress', () => {
       tokenA,
       tokenB,
       fee,
-      twap
+      twap,
     })
 
     // const address = getCreate2Address(

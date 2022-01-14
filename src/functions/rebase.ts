@@ -11,13 +11,7 @@ export function toElastic(total: Rebase, base: BigNumber, roundUp: boolean): Big
     elastic = base
   } else {
     elastic = base.mul(total.elastic).div(total.base)
-    if (
-      roundUp &&
-      elastic
-        .mul(total.base)
-        .div(total.elastic)
-        .lt(base)
-    ) {
+    if (roundUp && elastic.mul(total.base).div(total.elastic).lt(base)) {
       elastic = elastic.add(1)
     }
   }

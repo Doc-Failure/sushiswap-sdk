@@ -18,7 +18,7 @@ export class Pair {
     return computePairAddress({
       factoryAddress: FACTORY_ADDRESS[tokenA.chainId],
       tokenA,
-      tokenB
+      tokenB,
     })
   }
 

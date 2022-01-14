@@ -165,7 +165,7 @@ export class LimitOrder {
       endTime: this.endTime,
       stopPrice: this.stopPrice,
       oracleAddress: this.oracleAddress,
-      oracleData: keccak256(['bytes'], [this.oracleData])
+      oracleData: keccak256(['bytes'], [this.oracleData]),
     }
 
     const { v, r, s } = getSignature(order, chainId, privateKey)
@@ -189,7 +189,7 @@ export class LimitOrder {
       endTime: this.endTime,
       stopPrice: this.stopPrice,
       oracleAddress: this.oracleAddress,
-      oracleData: keccak256(['bytes'], [this.oracleData])
+      oracleData: keccak256(['bytes'], [this.oracleData]),
     }
 
     const { v, r, s } = await getSignatureWithProvider(order, chainId, provider)
@@ -213,7 +213,7 @@ export class LimitOrder {
       endTime: this.endTime,
       stopPrice: this.stopPrice,
       oracleAddress: this.oracleAddress,
-      oracleData: keccak256(['bytes'], [this.oracleData])
+      oracleData: keccak256(['bytes'], [this.oracleData]),
     }
 
     return getTypedData(order, this.chainId)
@@ -247,8 +247,8 @@ export class LimitOrder {
         v: this.v,
         r: this.r,
         s: this.s,
-        chainId: this.amountIn.currency.chainId
-      })
+        chainId: this.amountIn.currency.chainId,
+      }),
     })
 
     return resp.json()
@@ -331,7 +331,7 @@ export class FillLimitOrder {
       this.amountToFill.toString(),
       this.order.v,
       this.order.r,
-      this.order.s
+      this.order.s,
     ]
 
     const limitOrderContract = new Contract(STOP_LIMIT_ORDER_ADDRESS[this.order.chainId], abi, signer)

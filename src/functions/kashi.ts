@@ -8,7 +8,7 @@ import {
   MINIMUM_TARGET_UTILIZATION,
   PROTOCOL_FEE,
   PROTOCOL_FEE_DIVISOR,
-  STARTING_INTEREST_PER_YEAR
+  STARTING_INTEREST_PER_YEAR,
 } from '../constants'
 
 import { BigNumber } from '@ethersproject/bignumber'
@@ -22,9 +22,7 @@ export function accrue(pair: any, amount: BigNumber, includePrincipal = false): 
     .add(includePrincipal ? amount : Zero)
 }
 
-export function accrueTotalAssetWithFee(
-  pair: any
-): {
+export function accrueTotalAssetWithFee(pair: any): {
   elastic: BigNumber
   base: BigNumber
 } {
@@ -36,7 +34,7 @@ export function accrueTotalAssetWithFee(
   const feeFraction = feeAmount.mulDiv(pair.totalAsset.base, pair.currentAllAssets.value)
   return {
     elastic: pair.totalAsset.elastic,
-    base: pair.totalAsset.base.add(feeFraction)
+    base: pair.totalAsset.base.add(feeFraction),
   }
 }
 

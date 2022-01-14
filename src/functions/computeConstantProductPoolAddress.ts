@@ -15,7 +15,7 @@ export const computeConstantProductPoolAddress = ({
   tokenA,
   tokenB,
   fee,
-  twap
+  twap,
 }: {
   factoryAddress: string
   tokenA: Token
@@ -35,7 +35,7 @@ export const computeConstantProductPoolAddress = ({
   const CONSTANT_PRODUCT_POOL_INIT_CODE_HASH = computePoolInitCodeHash({
     creationCode: CONSTANT_PRODUCT_POOL_CREATION_CODE,
     deployData,
-    masterDeployerAddress: MASTER_DEPLOYER_ADDRESS
+    masterDeployerAddress: MASTER_DEPLOYER_ADDRESS,
   })
 
   // Compute pool address

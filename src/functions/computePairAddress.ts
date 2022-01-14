@@ -7,7 +7,7 @@ import { getCreate2Address } from '@ethersproject/address'
 export const computePairAddress = ({
   factoryAddress,
   tokenA,
-  tokenB
+  tokenB,
 }: {
   factoryAddress: string
   tokenA: Token

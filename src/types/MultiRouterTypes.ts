@@ -9,7 +9,7 @@ export enum PoolType {
   ConstantProduct = 'ConstantProduct',
   Weighted = 'Weighted',
   Hybrid = 'Hybrid',
-  ConcentratedLiquidity = 'ConcentratedLiquidity'
+  ConcentratedLiquidity = 'ConcentratedLiquidity',
 }
 
 export interface PoolInfo {
@@ -43,7 +43,7 @@ export class Pool {
     const info = {
       minLiquidity: 1000,
       swapGasCost: 40_000,
-      ..._info
+      ..._info,
     }
     this.address = info.address
     this.token0 = info.token0
@@ -63,7 +63,7 @@ export class RConstantProductPool extends Pool {
   constructor(info: PoolInfoNoType) {
     super({
       type: PoolType.ConstantProduct,
-      ...info
+      ...info,
     })
   }
 }
@@ -75,7 +75,7 @@ export class RHybridPool extends Pool {
   constructor(info: HybridPoolInfo) {
     super({
       type: PoolType.Hybrid,
-      ...info
+      ...info,
     })
     this.A = info.A
   }
@@ -89,7 +89,7 @@ export class RWeightedPool extends Pool {
   constructor(info: WeightedPoolInfo) {
     super({
       type: PoolType.Weighted,
-      ...info
+      ...info,
     })
     this.weight0 = info.weight0
     this.weight1 = info.weight1
@@ -122,7 +122,7 @@ export class RConcentratedLiquidityPool extends Pool {
       type: PoolType.ConcentratedLiquidity,
       reserve0: BigNumber.from(0),
       reserve1: BigNumber.from(0),
-      ...info
+      ...info,
     })
     this.liquidity = info.liquidity
     this.sqrtPrice = info.sqrtPrice
@@ -141,7 +141,7 @@ export interface RouteLeg {
 export enum RouteStatus {
   Success = 'Success',
   NoWay = 'NoWay',
-  Partial = 'Partial'
+  Partial = 'Partial',
 }
 export interface MultiRoute {
   status: RouteStatus

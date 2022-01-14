@@ -39,14 +39,14 @@ describe('Router', () => {
           {
             ttl: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapExactETHForTokens')
         expect(result.args.slice(0, -1)).toEqual([
           '0x51',
           [WETH9[1].address, token0.address, token1.address],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x64')
         checkDeadline(result.args[result.args.length - 1])
@@ -61,7 +61,7 @@ describe('Router', () => {
           {
             deadline: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapExactETHForTokens')
@@ -69,7 +69,7 @@ describe('Router', () => {
           '0x51',
           [WETH9[1].address, token0.address, token1.address],
           '0x0000000000000000000000000000000000000004',
-          '0x32'
+          '0x32',
         ])
         expect(result.value).toEqual('0x64')
       })
@@ -83,7 +83,7 @@ describe('Router', () => {
           {
             ttl: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapExactTokensForETH')
@@ -91,7 +91,7 @@ describe('Router', () => {
           '0x64',
           '0x51',
           [token1.address, token0.address, WETH9[1].address],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
         checkDeadline(result.args[result.args.length - 1])
@@ -102,7 +102,7 @@ describe('Router', () => {
           {
             ttl: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapExactTokensForTokens')
@@ -110,7 +110,7 @@ describe('Router', () => {
           '0x64',
           '0x59',
           [token0.address, token1.address],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
         checkDeadline(result.args[result.args.length - 1])
@@ -126,14 +126,14 @@ describe('Router', () => {
           {
             ttl: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapETHForExactTokens')
         expect(result.args.slice(0, -1)).toEqual([
           '0x64',
           [WETH9[1].address, token0.address, token1.address],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x80')
         checkDeadline(result.args[result.args.length - 1])
@@ -147,7 +147,7 @@ describe('Router', () => {
           {
             ttl: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapTokensForExactETH')
@@ -155,7 +155,7 @@ describe('Router', () => {
           '0x64',
           '0x80',
           [token1.address, token0.address, WETH9[1].address],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
         checkDeadline(result.args[result.args.length - 1])
@@ -166,7 +166,7 @@ describe('Router', () => {
           {
             ttl: 50,
             recipient: '0x0000000000000000000000000000000000000004',
-            allowedSlippage: new Percent('1', '100')
+            allowedSlippage: new Percent('1', '100'),
           }
         )
         expect(result.methodName).toEqual('swapTokensForExactTokens')
@@ -174,7 +174,7 @@ describe('Router', () => {
           '0x64',
           '0x71',
           [token0.address, token1.address],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
         checkDeadline(result.args[result.args.length - 1])
@@ -192,14 +192,14 @@ describe('Router', () => {
               ttl: 50,
               recipient: '0x0000000000000000000000000000000000000004',
               allowedSlippage: new Percent('1', '100'),
-              feeOnTransfer: true
+              feeOnTransfer: true,
             }
           )
           expect(result.methodName).toEqual('swapExactETHForTokensSupportingFeeOnTransferTokens')
           expect(result.args.slice(0, -1)).toEqual([
             '0x51',
             [WETH9[1].address, token0.address, token1.address],
-            '0x0000000000000000000000000000000000000004'
+            '0x0000000000000000000000000000000000000004',
           ])
           expect(result.value).toEqual('0x64')
           checkDeadline(result.args[result.args.length - 1])
@@ -214,7 +214,7 @@ describe('Router', () => {
               ttl: 50,
               recipient: '0x0000000000000000000000000000000000000004',
               allowedSlippage: new Percent('1', '100'),
-              feeOnTransfer: true
+              feeOnTransfer: true,
             }
           )
           expect(result.methodName).toEqual('swapExactTokensForETHSupportingFeeOnTransferTokens')
@@ -222,7 +222,7 @@ describe('Router', () => {
             '0x64',
             '0x51',
             [token1.address, token0.address, WETH9[1].address],
-            '0x0000000000000000000000000000000000000004'
+            '0x0000000000000000000000000000000000000004',
           ])
           expect(result.value).toEqual('0x0')
           checkDeadline(result.args[result.args.length - 1])
@@ -237,7 +237,7 @@ describe('Router', () => {
               ttl: 50,
               recipient: '0x0000000000000000000000000000000000000004',
               allowedSlippage: new Percent('1', '100'),
-              feeOnTransfer: true
+              feeOnTransfer: true,
             }
           )
           expect(result.methodName).toEqual('swapExactTokensForTokensSupportingFeeOnTransferTokens')
@@ -245,7 +245,7 @@ describe('Router', () => {
             '0x64',
             '0x59',
             [token0.address, token1.address],
-            '0x0000000000000000000000000000000000000004'
+            '0x0000000000000000000000000000000000000004',
           ])
           expect(result.value).toEqual('0x0')
           checkDeadline(result.args[result.args.length - 1])
@@ -263,7 +263,7 @@ describe('Router', () => {
                 ttl: 50,
                 recipient: '0x0000000000000000000000000000000000000004',
                 allowedSlippage: new Percent('1', '100'),
-                feeOnTransfer: true
+                feeOnTransfer: true,
               }
             )
           ).toThrow('EXACT_OUT_FOT')
@@ -279,7 +279,7 @@ describe('Router', () => {
                 ttl: 50,
                 recipient: '0x0000000000000000000000000000000000000004',
                 allowedSlippage: new Percent('1', '100'),
-                feeOnTransfer: true
+                feeOnTransfer: true,
               }
             )
           ).toThrow('EXACT_OUT_FOT')
@@ -295,7 +295,7 @@ describe('Router', () => {
                 ttl: 50,
                 recipient: '0x0000000000000000000000000000000000000004',
                 allowedSlippage: new Percent('1', '100'),
-                feeOnTransfer: true
+                feeOnTransfer: true,
               }
             )
           ).toThrow('EXACT_OUT_FOT')
