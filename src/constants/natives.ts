@@ -13,6 +13,7 @@ import {
   Palm,
   xDai,
   Telos,
+  Aurora,
 } from '../entities/Native'
 
 import { ChainId } from '../enums'
@@ -45,4 +46,5 @@ export const NATIVE = {
   [ChainId.MOONRIVER]: Movr.onChain(ChainId.MOONRIVER),
   [ChainId.FUSE]: Fuse.onChain(ChainId.FUSE),
   [ChainId.TELOS]: Telos.onChain(ChainId.TELOS),
+  [ChainId.AURORA_TESTNET]: Aurora.onChain(ChainId.AURORA_TESTNET),
 }
