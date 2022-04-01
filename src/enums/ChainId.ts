@@ -29,4 +29,5 @@ export enum ChainId {
   FUSE = 122,
   TELOS = 40,
   AURORA_TESTNET = 1313161555,
+  THETA_TESTNET = 365,
 }
